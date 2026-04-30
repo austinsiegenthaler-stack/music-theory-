@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A warm, interactive music theory map for exploring major keys, diatonic chords, progressions, and instrument note layouts."
+    />
+    <title>Music Theory Map</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar" aria-labelledby="app-title">
+        <div>
+          <p class="eyebrow">Songwriter reference</p>
+          <h1 id="app-title">Music Theory Map</h1>
+        </div>
+        <div class="top-controls">
+          <label class="field">
+            <span>Major key</span>
+            <select id="keySelect" aria-label="Select major key"></select>
+          </label>
+          <label class="toggle">
+            <input id="lockKey" type="checkbox" checked />
+            <span>Lock key</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="scale-ribbon" aria-label="Major scale">
+        <div>
+          <p class="section-kicker">Scale</p>
+          <h2 id="scaleTitle">C major</h2>
+        </div>
+        <div id="scaleNotes" class="note-row"></div>
+      </section>
+
+      <section class="controls-panel" aria-label="Map controls">
+        <div class="segmented" role="group" aria-label="Chord extension layer">
+          <button class="segment active" data-extension="triads" type="button">Triads</button>
+          <button class="segment" data-extension="sevenths" type="button">7ths</button>
+          <button class="segment" data-extension="upper" type="button">9 / 11 / 13</button>
+        </div>
+        <div class="segmented" role="group" aria-label="Instrument view">
+          <button class="segment active" data-instrument="piano" type="button">Piano</button>
+          <button class="segment" data-instrument="guitar" type="button">Guitar</button>
+          <button class="segment" data-instrument="banjo" type="button">Banjo</button>
+        </div>
+      </section>
+
+      <section class="map-grid">
+        <article class="panel chord-panel" aria-labelledby="chord-map-title">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Diatonic chords</p>
+              <h2 id="chord-map-title">Chord Map</h2>
+            </div>
+            <p class="hint">Click any chord to hear it.</p>
+          </div>
+          <div id="chordGrid" class="chord-grid"></div>
+        </article>
+
+        <article class="panel function-panel" aria-labelledby="function-title">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Functional harmony</p>
+              <h2 id="function-title">Home, Lift, Pull</h2>
+            </div>
+          </div>
+          <div class="function-flow" aria-label="Tonic to subdominant to dominant harmony flow">
+            <div class="function-group" data-function="tonic">
+              <p>Tonic</p>
+              <span>I, vi, iii</span>
+              <div id="tonicGroup" class="function-chips"></div>
+            </div>
+            <div class="flow-arrow" aria-hidden="true"></div>
+            <div class="function-group" data-function="subdominant">
+              <p>Subdominant</p>
+              <span>ii, IV</span>
+              <div id="subdominantGroup" class="function-chips"></div>
+            </div>
+            <div class="flow-arrow" aria-hidden="true"></div>
+            <div class="function-group" data-function="dominant">
+              <p>Dominant</p>
+              <span>V, vii°</span>
+              <div id="dominantGroup" class="function-chips"></div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel progression-panel" aria-labelledby="progression-title">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Progressions</p>
+              <h2 id="progression-title">Common Moves</h2>
+            </div>
+            <div class="button-row">
+              <button id="commonProgression" class="primary-action" type="button">Common</button>
+              <button id="randomProgression" class="secondary-action" type="button">Random</button>
+            </div>
+          </div>
+          <div id="progressionStrip" class="progression-strip"></div>
+          <div class="transport">
+            <button id="playProgression" class="play-button" type="button">Play loop</button>
+            <button id="stopProgression" class="secondary-action" type="button">Stop</button>
+          </div>
+          <div id="whyBox" class="why-box"></div>
+        </article>
+
+        <article class="panel instrument-panel" aria-labelledby="instrument-title">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Instrument view</p>
+              <h2 id="instrument-title">Piano</h2>
+            </div>
+            <p id="selectedChordLabel" class="hint">Showing the full key.</p>
+          </div>
+          <div id="instrumentView" class="instrument-view"></div>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
